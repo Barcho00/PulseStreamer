@@ -1,4 +1,4 @@
-# KardioWykres - Monitor Tętna BLE (WPF)
+# PulseStreamer - Monitor Tętna BLE (WPF)
 
 Aplikacja WPF służąca do monitorowania tętna w czasie rzeczywistym z opasek sportowych i czujników piersiowych Bluetooth LE (np. Polar H10, Garmin HRM) przy użyciu natywnego interfejsu WinRT BLE w systemie Windows.
 
@@ -36,6 +36,11 @@ Zlokalizowany w lewym pasku bocznym panel pozwala na:
 * **Downsampling wykresu**: Przy renderowaniu bardzo długich treningów historycznych z tysiącami punktów, aplikacja redukuje punkty o odległości mniejszej niż 2 piksele na osi X. Zapewnia to renderowanie Beziera bez obciążenia procesora.
 * **Asynchroniczny zapis**: Zapis plików JSON sesji odbywa się w pełni asynchronicznie poza głównym wątkiem interfejsu użytkownika, eliminując jakiekolwiek przycięcia wykresu.
 * **WAV Beep**: Dawny, blokujący dźwięk `Console.Beep()` został zastąpiony asynchronicznym odtwarzaczem `SoundPlayer` plików `.wav`, które generowane są automatycznie przy starcie aplikacji w folderze `/sounds`.
+
+### 6. Integracja ze streamowaniem (OBS Studio)
+Aplikacja została zaprojektowana z myślą o streamerach pokazujących swoje tętno widzom. Oferuje dwie metody na dodanie tętna do nakładki na żywo:
+1. **Pliki Tekstowe (Najprostsza metoda)**: W folderze `obs/` aplikacja stale aktualizuje pliki takie jak `OBS_Bpm.txt`, `OBS_Calories.txt` czy `OBS_Zone.txt`. W OBS wystarczy dodać "Źródło tekstu (GDI+)" i zaznaczyć opcję "Czytaj z pliku".
+2. **Serwer HTTP (Dla widżetów webowych)**: Aplikacja wystawia lokalny serwer JSON pod adresem `http://127.0.0.1:8080/api/hr/`, dzięki czemu można łatwo zintegrować tętno ze źródłami przeglądarkowymi (Browser Source).
 
 ---
 

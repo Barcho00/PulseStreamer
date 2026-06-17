@@ -108,3 +108,8 @@ Upon an OS-level disconnect or missing heart rate packets for $>1.8$ seconds, th
 To draw Bezier graphs efficiently over hours of training, `ChartRenderer.DrawChart` filters the point array:
 - If two adjacent points would map to a horizontal distance of less than `2.0` pixels, the middle points are skipped.
 - This bounds rendering complexity to a few hundred points on canvas regardless of workout duration.
+
+### 6. OBS Studio Integration (Live Streaming)
+The `LiveHeartRateStreamer` class provides two mechanisms to expose active telemetry to external software like OBS Studio:
+- **Local File System (Text Sources)**: Writes real-time values to `OBS_Bpm.txt`, `OBS_Calories.txt`, `OBS_Zone.txt`, and `OBS_Duration.txt` located in the `/obs/` application directory.
+- **Local HTTP Server**: Spawns a background `HttpListener` on `http://127.0.0.1:8080/api/hr/` exposing a standard JSON object with telemetry, ideal for OBS Browser Source widgets.

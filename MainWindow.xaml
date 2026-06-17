@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         mc:Ignorable="d"
-        Title="KardioWykres - Monitor Tętna BLE" Height="720" Width="1100"
+        Title="PulseStreamer - Monitor Tętna BLE" Height="720" Width="1100"
         WindowStartupLocation="CenterScreen"
         Background="#07070A">
 
@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
 
         <!-- TitleBar -->
-        <ui:TitleBar Grid.Row="0" Title="KardioWykres - Monitor Tętna BLE" CloseWindowByDoubleClickOnIcon="True">
+        <ui:TitleBar Grid.Row="0" Title="PulseStreamer - Monitor Tętna BLE" CloseWindowByDoubleClickOnIcon="True">
             <ui:TitleBar.Icon>
                 <ui:SymbolIcon Symbol="Heart24" Foreground="#FF3B30" Filled="True" />
             </ui:TitleBar.Icon>
