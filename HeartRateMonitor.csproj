@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows10.0.19041.0</TargetFramework>
+    <RootNamespace>HeartRateMonitor</RootNamespace>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="WPF-UI" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="HeartRateMonitor.Tests\**" />
+    <EmbeddedResource Remove="HeartRateMonitor.Tests\**" />
+    <None Remove="HeartRateMonitor.Tests\**" />
+    <Page Remove="HeartRateMonitor.Tests\**" />
+  </ItemGroup>
+
+</Project>
