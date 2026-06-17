@@ -249,6 +249,19 @@
                                     <TextBlock Grid.Column="2" Text="kg" VerticalAlignment="Center" Foreground="#a0a0b0" FontSize="11" Width="20" />
                                 </Grid>
 
+                                <!-- Resting Heart Rate Slider -->
+                                <TextBlock Text="Tętno spoczynkowe (dokładność kalorii)" FontSize="11" Foreground="#a0a0b0" />
+                                <Grid Margin="0,2,0,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Slider Grid.Column="0" x:Name="SliderRestingHR" Minimum="35" Maximum="100" Value="70" TickFrequency="1" IsSnapToTickEnabled="True" ValueChanged="SliderRestingHR_ValueChanged" VerticalAlignment="Center" />
+                                    <ui:TextBox Grid.Column="1" Text="{Binding ElementName=SliderRestingHR, Path=Value, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="8,0,4,0" VerticalAlignment="Center" Width="42" Height="24" Padding="2" TextAlignment="Center" FontWeight="SemiBold" Foreground="#f0f0f5" Background="#1c1c24" BorderBrush="#2d2d3b" />
+                                    <TextBlock Grid.Column="2" Text="BPM" VerticalAlignment="Center" Foreground="#a0a0b0" FontSize="11" Width="28" />
+                                </Grid>
+
 
                                 </StackPanel>
                         </Expander>

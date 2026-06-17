@@ -44,6 +44,7 @@
                             <StackPanel>
                                 <TextBlock Text="SPALONE KALORIE" FontSize="9" FontWeight="Bold" Foreground="#a0a0b0" />
                                 <TextBlock x:Name="TxtCalories" Text="0 kcal" FontSize="18" FontWeight="Bold" Foreground="#D89B00" Margin="0,4,0,0" />
+                                <TextBlock x:Name="TxtEpocDetails" Text="" FontSize="9" Foreground="#a0a0b0" Margin="0,2,0,0" Visibility="Collapsed" TextWrapping="Wrap" />
                             </StackPanel>
                         </Border>
 

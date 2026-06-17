@@ -13,13 +13,28 @@ namespace HeartRateMonitor
             double calories, 
             double avgBpm, 
             double maxBpm, 
-            Dictionary<int, int> zoneDurations)
+            Dictionary<int, int> zoneDurations,
+            double epocCalories = 0)
         {
             InitializeComponent();
 
             TxtWorkoutName.Text = $"Trening: {name}";
             TxtDuration.Text = duration;
-            TxtCalories.Text = $"{Math.Round(calories)} kcal";
+            
+            // Show calories with EPOC breakdown
+            double totalCalories = calories + epocCalories;
+            if (epocCalories > 1)
+            {
+                TxtCalories.Text = $"{Math.Round(totalCalories)} kcal";
+                TxtEpocDetails.Text = $"Trening: {Math.Round(calories)} + Afterburn: {Math.Round(epocCalories)} kcal";
+                TxtEpocDetails.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                TxtCalories.Text = $"{Math.Round(calories)} kcal";
+                TxtEpocDetails.Visibility = Visibility.Collapsed;
+            }
+            
             TxtAvgBpm.Text = $"{Math.Round(avgBpm)} BPM";
             TxtMaxBpm.Text = $"{Math.Round(maxBpm)} BPM";
 

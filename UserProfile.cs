@@ -12,6 +12,7 @@ namespace HeartRateMonitor
         public string LastDeviceName { get; set; } = string.Empty;
         public int Age { get; set; } = 30;
         public double Weight { get; set; } = 75;
+        public int RestingHR { get; set; } = 70;
         public string Gender { get; set; } = "Male";
         public string PreferredActivity { get; set; } = "Bieżnia";
         

@@ -482,6 +482,7 @@ namespace HeartRateMonitor
             {
                 SliderAge.Value = profile.Age;
                 SliderWeight.Value = profile.Weight;
+                SliderRestingHR.Value = profile.RestingHR;
                 
                 // Select GoalType
                 foreach (ComboBoxItem item in ComboGoalType.Items)
@@ -580,6 +581,7 @@ namespace HeartRateMonitor
             {
                 activeProfile.Age = (int)SliderAge.Value;
                 activeProfile.Weight = SliderWeight.Value;
+                activeProfile.RestingHR = (int)SliderRestingHR.Value;
                 
                 if (ComboGoalType.SelectedItem is ComboBoxItem goalItem)
                 {
@@ -888,6 +890,14 @@ namespace HeartRateMonitor
                 double finalAvg = _activeSession.AverageBpm;
                 double finalMax = _activeSession.MaxBpm;
 
+                // Calculate EPOC (afterburn effect)
+                var activeProfileForEpoc = _profileManager.ActiveProfile;
+                double durationMinutes = _activeSession.History.Count > 0 
+                    ? _activeSession.History.Last().Time / 60.0 : 0;
+                double epocCalories = FitnessCalculator.EstimateEPOC(
+                    finalCalories, finalAvg, 
+                    activeProfileForEpoc?.Age ?? 30, durationMinutes);
+
                 // Save session to disk asynchronously
                 var sessionToSave = _activeSession;
                 await SaveSessionToDiskAsync(sessionToSave);
@@ -904,7 +914,8 @@ namespace HeartRateMonitor
                     finalCalories,
                     finalAvg,
                     finalMax,
-                    new Dictionary<int, int>(_zoneDurations)
+                    new Dictionary<int, int>(_zoneDurations),
+                    epocCalories
                 )
                 {
                     Owner = this
@@ -1086,7 +1097,8 @@ namespace HeartRateMonitor
                                 activeProfile.Age, 
                                 activeProfile.Gender == "Male", 
                                 activeProfile.PreferredActivity, 
-                                hrElapsed
+                                hrElapsed,
+                                activeProfile.RestingHR
                             );
                             _activeSession.CaloriesBurned += calBurned;
                         }
@@ -1544,6 +1556,17 @@ namespace HeartRateMonitor
             if (profile != null)
             {
                 profile.Weight = (int)e.NewValue;
+                SaveActiveProfileSettings();
+            }
+        }
+
+        private void SliderRestingHR_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (_isLoadingSettings) return;
+            var profile = _profileManager.ActiveProfile;
+            if (profile != null)
+            {
+                profile.RestingHR = (int)e.NewValue;
                 SaveActiveProfileSettings();
             }
         }
