@@ -32,7 +32,7 @@
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="0,0,0,16">
                 <StackPanel Margin="0,0,12,0">
                     <!-- Core Stats Grid -->
-                    <UniformGrid Columns="2" Margin="0,0,0,16">
+                    <UniformGrid Columns="2" Margin="0,0,0,8">
                         <Border Background="#191922" BorderThickness="1" BorderBrush="#252530" CornerRadius="8" Padding="12" Margin="0,0,6,6">
                             <StackPanel>
                                 <TextBlock Text="CZAS TRENINGU" FontSize="9" FontWeight="Bold" Foreground="#a0a0b0" />
@@ -44,7 +44,6 @@
                             <StackPanel>
                                 <TextBlock Text="SPALONE KALORIE" FontSize="9" FontWeight="Bold" Foreground="#a0a0b0" />
                                 <TextBlock x:Name="TxtCalories" Text="0 kcal" FontSize="18" FontWeight="Bold" Foreground="#D89B00" Margin="0,4,0,0" />
-                                <TextBlock x:Name="TxtEpocDetails" Text="" FontSize="9" Foreground="#a0a0b0" Margin="0,2,0,0" Visibility="Collapsed" TextWrapping="Wrap" />
                             </StackPanel>
                         </Border>
 
@@ -62,6 +61,23 @@
                             </StackPanel>
                         </Border>
                     </UniformGrid>
+
+                    <!-- EPOC Afterburn Card (visible only when EPOC > 0) -->
+                    <Border x:Name="CardEpoc" Background="#1a1710" BorderThickness="1" BorderBrush="#D89B00" CornerRadius="8" Padding="12" Margin="0,0,0,16" Visibility="Collapsed">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="🔥" FontSize="18" VerticalAlignment="Center" Margin="0,0,10,0" />
+                            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                <TextBlock Text="EFEKT AFTERBURN (EPOC)" FontSize="9" FontWeight="Bold" Foreground="#e0c690" />
+                                <TextBlock x:Name="TxtEpocDetails" Text="" FontSize="10" Foreground="#a0a0b0" Margin="0,2,0,0" />
+                            </StackPanel>
+                            <TextBlock Grid.Column="2" x:Name="TxtEpocValue" Text="+0 kcal" FontSize="16" FontWeight="Bold" Foreground="#D89B00" VerticalAlignment="Center" />
+                        </Grid>
+                    </Border>
 
                     <!-- Time in Zones Section -->
                     <TextBlock Text="CZAS W STREFACH TĘTNA" FontSize="11" FontWeight="Bold" Foreground="#a0a0b0" Margin="2,0,0,8"/>

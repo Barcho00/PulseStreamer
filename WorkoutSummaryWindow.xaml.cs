@@ -23,16 +23,17 @@ namespace HeartRateMonitor
             
             // Show calories with EPOC breakdown
             double totalCalories = calories + epocCalories;
-            if (epocCalories > 1)
+            if (epocCalories > 0.5)
             {
                 TxtCalories.Text = $"{Math.Round(totalCalories)} kcal";
-                TxtEpocDetails.Text = $"Trening: {Math.Round(calories)} + Afterburn: {Math.Round(epocCalories)} kcal";
-                TxtEpocDetails.Visibility = Visibility.Visible;
+                TxtEpocValue.Text = $"+{Math.Round(epocCalories)} kcal";
+                TxtEpocDetails.Text = $"Trening spalił {Math.Round(calories)} kcal — organizm spali dodatkowe kalorie po wysiłku";
+                CardEpoc.Visibility = Visibility.Visible;
             }
             else
             {
                 TxtCalories.Text = $"{Math.Round(calories)} kcal";
-                TxtEpocDetails.Visibility = Visibility.Collapsed;
+                CardEpoc.Visibility = Visibility.Collapsed;
             }
             
             TxtAvgBpm.Text = $"{Math.Round(avgBpm)} BPM";
